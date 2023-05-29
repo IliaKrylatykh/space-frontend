@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Route, Routes } from 'react-router-dom'
+import Navibar from './components/Navbar/Navbar'
+import AddPostPage from './pages/AddPostPage/AddPostPage'
+import HomePage from './pages/HomePage/HomePage'
+import LoginPage from './pages/LoginPage/LoginPage'
+import PostPage from './pages/PostPage/PostPage'
+import RegistrationPage from './pages/RegistrationPage/RegistrationPage'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<div className='App'>
+			<Navibar />
+			<Routes>
+				<Route path='/' element={<HomePage />} />
+				<Route path='/posts/:id' element={<PostPage />} />
+				<Route path='/add-post' element={<AddPostPage />} />
+				<Route path='/login' element={<LoginPage />} />
+				<Route path='/register' element={<RegistrationPage />} />
+			</Routes>
+		</div>
+	)
 }
 
-export default App;
+export default App
