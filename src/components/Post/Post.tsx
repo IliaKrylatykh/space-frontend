@@ -3,11 +3,9 @@ import { NavLink } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
+import { IPost } from '../../models/IPost'
 
-const Post: FC = () => {
-	const text: string =
-		"Importance for Life: The sun plays a crucial role in sustaining life on Earth. It provides the energy necessary for photosynthesis in plants, which is the basis of the food chain. Sunlight also helps regulate Earth's climate and seasons. Furthermore, solar energy can be harnessed through technologies like solar panels to generate electricity."
-
+const Post: FC<IPost> = ({ id, title, text, viewsCount, likesCount }) => {
 	return (
 		<Card
 			style={{
@@ -21,12 +19,12 @@ const Post: FC = () => {
 				src='https://images.unsplash.com/photo-1529788295308-1eace6f67388?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80'
 			/>
 			<Card.Body>
-				<Card.Title>Sun</Card.Title>
+				<Card.Title>{title}</Card.Title>
 				<Card.Text>
 					{text.length > 150 ? text.substring(0, 150) + '...' : text}
 				</Card.Text>
 				<Button variant='dark'>
-					<NavLink as={Link} to='/posts/:id'>
+					<NavLink as={Link} to={`/posts/${id}`}>
 						Full post
 					</NavLink>
 				</Button>

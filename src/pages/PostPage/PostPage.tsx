@@ -1,20 +1,41 @@
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { NavLink } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import axios from '../../axios'
+import { IPost } from '../../models/IPost'
 
 const PostPage: FC = () => {
-	const text: string =
-		"Importance for Life: The sun plays a crucial role in sustaining life on Earth. It provides the energy necessary for photosynthesis in plants, which is the basis of the food chain. Sunlight also helps regulate Earth's climate and seasons. Furthermore, solar energy can be harnessed through technologies like solar panels to generate electricity."
+	const [data, setData] = useState<IPost>()
+	const [isLoading, setIsLoading] = useState(true)
+	const { id } = useParams()
+
+	useEffect(() => {
+		axios
+			.get(`/posts/${id}`)
+			.then(res => {
+				setData(res.data)
+				setIsLoading(false)
+			})
+			.catch(err => {
+				console.warn(err)
+				alert('Ошибка при загрузки статьи')
+				setIsLoading(false)
+			})
+	}, [])
+
+	if (isLoading) {
+		return <div>loading</div>
+	}
+
 	return (
 		<div
 			style={{
 				width: '100%',
 				background: 'lightgray',
 				minHeight: '600px',
-				backgroundImage:
-					'url(https://images.unsplash.com/photo-1529788295308-1eace6f67388?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80)',
+				backgroundImage: `url(${data!.imageUrl})`,
 				backgroundRepeat: 'no-repeat',
 				backgroundSize: '100%',
 				display: 'flex',
@@ -29,8 +50,12 @@ const PostPage: FC = () => {
 				}}
 			>
 				<Card.Body>
-					<Card.Title>Sun</Card.Title>
-					<Card.Text>{text}</Card.Text>
+					<Card.Title>{data!.title}</Card.Title>
+					<Card.Text>{data!.text}</Card.Text>
+					<Card.Text>{data!.createdAt}</Card.Text>
+					<Card.Text>{data!.user}</Card.Text>
+					<Card.Text>{data!.viewsCount}</Card.Text>
+					<Card.Text>{data!.likesCount}</Card.Text>
 					<Button variant='dark'>
 						<NavLink as={Link} to='/'>
 							Home
