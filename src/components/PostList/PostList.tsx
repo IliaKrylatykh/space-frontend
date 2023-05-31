@@ -1,6 +1,7 @@
 import { FC, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useAppSelector } from '../../hooks/redux'
+import { IUser } from '../../models/IUser'
 import { fetchPosts } from '../../redux/slices/ActionCreators'
 import { AppDispatch } from '../../redux/store'
 import Post from '../Post/Post'
@@ -8,14 +9,14 @@ import Post from '../Post/Post'
 const PostList: FC = () => {
 	const dispatch = useDispatch<AppDispatch>()
 	const posts = useAppSelector(state => state.postReducer)
-	console.log(posts)
+	const userData = useAppSelector(state => state.authReducer.data)
 
 	const isPostsLoading = posts.isLoading
 
 	useEffect(() => {
 		dispatch(fetchPosts())
 	}, [])
-
+	console.log(posts)
 	return (
 		<div
 			style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}
@@ -34,6 +35,7 @@ const PostList: FC = () => {
 						createdAt={post.updatedAt}
 						user={post.user}
 						imageUrl={post.imageUrl}
+						isEditable={false}
 					/>
 				)
 			)}

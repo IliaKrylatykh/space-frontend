@@ -35,7 +35,7 @@ const PostPage: FC = () => {
 				width: '100%',
 				background: 'lightgray',
 				minHeight: '600px',
-				backgroundImage: `url(${data!.imageUrl})`,
+				backgroundImage: `url(http://localhost:4444${data?.imageUrl})`,
 				backgroundRepeat: 'no-repeat',
 				backgroundSize: '100%',
 				display: 'flex',
@@ -50,7 +50,17 @@ const PostPage: FC = () => {
 				}}
 			>
 				<Card.Body>
-					<Card.Title>{data!.title}</Card.Title>
+					<div
+						style={{
+							display: 'flex',
+							justifyContent: 'space-between',
+							alignItems: 'center',
+						}}
+					>
+						<Card.Title>{data!.title}</Card.Title>
+						<Button variant='dark'>Редактировать</Button>
+						<Button variant='dark'>Удалить пост</Button>
+					</div>
 					<Card.Text>{data!.text}</Card.Text>
 					<Card.Text>{data!.createdAt}</Card.Text>
 					<Card.Text>{data!.user}</Card.Text>

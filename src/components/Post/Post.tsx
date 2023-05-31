@@ -5,7 +5,14 @@ import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 import { IPost } from '../../models/IPost'
 
-const Post: FC<IPost> = ({ id, title, text, viewsCount, likesCount }) => {
+const Post: FC<IPost> = ({
+	id,
+	title,
+	text,
+	viewsCount,
+	likesCount,
+	imageUrl,
+}) => {
 	return (
 		<Card
 			style={{
@@ -14,10 +21,7 @@ const Post: FC<IPost> = ({ id, title, text, viewsCount, likesCount }) => {
 				boxShadow: ' 5px 5px 10px',
 			}}
 		>
-			<Card.Img
-				variant='top'
-				src='https://images.unsplash.com/photo-1529788295308-1eace6f67388?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80'
-			/>
+			<Card.Img variant='top' src={`http://localhost:4444${imageUrl}`} />
 			<Card.Body>
 				<Card.Title>{title}</Card.Title>
 				<Card.Text>
