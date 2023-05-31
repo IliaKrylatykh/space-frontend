@@ -35,7 +35,7 @@ const PostPage: FC = () => {
 				width: '100%',
 				background: 'lightgray',
 				minHeight: '600px',
-				backgroundImage: `${process.env.REACT_APP_API_URL}${data?.imageUrl})`,
+				backgroundImage: `${process.env.REACT_APP_API_URL}${data?.imageUrl}`,
 				backgroundRepeat: 'no-repeat',
 				backgroundSize: '100%',
 				display: 'flex',

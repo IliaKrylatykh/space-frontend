@@ -21,7 +21,10 @@ const Post: FC<IPost> = ({
 				boxShadow: ' 5px 5px 10px',
 			}}
 		>
-			<Card.Img variant='top' src={`http://localhost:4444${imageUrl}`} />
+			<Card.Img
+				variant='top'
+				src={imageUrl ? `${process.env.REACT_APP_API_URL}${imageUrl}` : ''}
+			/>
 			<Card.Body>
 				<Card.Title>{title}</Card.Title>
 				<Card.Text>
