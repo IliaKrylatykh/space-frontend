@@ -34,8 +34,6 @@ const RegistrationPage: FC = () => {
 		}
 	}
 
-	console.log(isAuth)
-
 	if (isAuth) {
 		return <Navigate to='/' />
 	}

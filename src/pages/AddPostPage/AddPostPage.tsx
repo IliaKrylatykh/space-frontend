@@ -91,7 +91,7 @@ const AddPostPage: FC = () => {
 							Удалить
 						</Button>
 						<img
-							src={`http://localhost:4444${imageUrl}`}
+							src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
 							style={{ width: '200px' }}
 							alt={''}
 						/>

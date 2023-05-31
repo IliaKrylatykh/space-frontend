@@ -16,7 +16,6 @@ const PostList: FC = () => {
 	useEffect(() => {
 		dispatch(fetchPosts())
 	}, [])
-	console.log(posts)
 	return (
 		<div
 			style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}
